@@ -29,13 +29,6 @@ jobs:
       run: bru run --env "test-env" --env-var base_url="https://reqres.in" -r --delay 200 --reporter-junit results.xml  --reporter-html report-test-api.html --reporter-skip-all-headers | true
     
     - name: Upload Test Results
-      uses: actions/upload-artifact@v4
-      with:
-        name: api-test-artifacts
-        path: |
-          results.xml
-          report-test-api.html
-    - name: Upload Test Results
       if: always()
       uses: actions/upload-artifact@v4
       with:
@@ -44,3 +37,4 @@ jobs:
           results.xml
           report-test-api.html
         if-no-files-found: ignore
+        overwrite: true
