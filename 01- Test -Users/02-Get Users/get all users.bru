@@ -1,0 +1,39 @@
+meta {
+  name: get all users
+  type: http
+  seq: 1
+}
+
+get {
+  url: {{base_url}}/api/users
+  body: none
+  auth: none
+}
+
+params:query {
+  ~page: 
+  ~per_page: 
+}
+
+assert {
+  res.status: eq 200
+  res.body.data.every( usr => usr["id"] != null): isTruthy
+}
+
+script:post-response {
+  bru.setVar('user-id', res.body.data[2].id);
+}
+
+tests {
+  test('have the default value for per_page', function () {
+    const body = res.getBody();
+    expect(res.getStatus()).to.equal(200);
+    expect(body.per_page).to.equal(6);
+    
+  });
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

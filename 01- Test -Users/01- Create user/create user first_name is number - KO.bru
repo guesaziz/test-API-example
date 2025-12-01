@@ -1,0 +1,32 @@
+meta {
+  name: create user first_name is number - KO
+  type: http
+  seq: 4
+}
+
+post {
+  url: {{base_url}}/api/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}
+
+body:json {
+  {
+        "first_name": 12,
+        "last_name": "test prenom aziz"
+    
+  }
+}
+
+assert {
+  ~res.sataus: eq 301
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

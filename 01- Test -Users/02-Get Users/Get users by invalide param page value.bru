@@ -1,0 +1,25 @@
+meta {
+  name: Get users by invalide param page value
+  type: http
+  seq: 4
+}
+
+get {
+  url: {{base_url}}/api/users?page=0r&per_page={{nb_usr_per_page}}
+  body: none
+  auth: none
+}
+
+params:query {
+  page: 0r
+  per_page: {{nb_usr_per_page}}
+}
+
+headers {
+  accept: application/json
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}

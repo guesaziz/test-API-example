@@ -1,0 +1,33 @@
+meta {
+  name: update user meta information is possible - KO
+  type: http
+  seq: 3
+}
+
+patch {
+  url: {{base_url}}/api/users/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: {{user-id}}
+}
+
+body:json {
+  {
+  "_meta": {"upgrade_cta": "{{email}}"}
+  }
+  
+}
+
+assert {
+  res.status: eq 200
+  res.body._meta.upgrade_cta: eq "{{email}}"
+  res.body.updatedAt: contains "{{current_date}}"
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

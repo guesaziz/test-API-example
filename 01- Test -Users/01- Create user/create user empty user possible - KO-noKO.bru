@@ -1,0 +1,31 @@
+meta {
+  name: create user empty user possible - KO-noKO
+  type: http
+  seq: 5
+}
+
+post {
+  url: {{base_url}}/api/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}
+
+body:json {
+  {
+       
+    
+  }
+}
+
+assert {
+  ~res.sataus: eq 301
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

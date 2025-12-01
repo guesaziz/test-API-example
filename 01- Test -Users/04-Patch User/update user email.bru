@@ -1,0 +1,33 @@
+meta {
+  name: update user email
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{base_url}}/api/users/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: {{user-id}}
+}
+
+body:json {
+  {
+  "email": "{{email}}"
+  }
+  
+}
+
+assert {
+  res.status: eq 200
+  res.body.email: eq "{{email}}"
+  res.body.updatedAt: contains "{{current_date}}"
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

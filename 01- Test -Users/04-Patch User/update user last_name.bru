@@ -1,0 +1,33 @@
+meta {
+  name: update user last_name
+  type: http
+  seq: 2
+}
+
+patch {
+  url: {{base_url}}/api/users/:id
+  body: json
+  auth: none
+}
+
+params:path {
+  id: {{user-id}}
+}
+
+body:json {
+  {
+  "last_name": "Funked name"
+  }
+  
+}
+
+assert {
+  res.status: eq 200
+  res.body.last_name: eq "Funked name"
+  res.body.updatedAt: contains "{{current_date}}"
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

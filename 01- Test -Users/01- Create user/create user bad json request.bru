@@ -1,0 +1,33 @@
+meta {
+  name: create user bad json request
+  type: http
+  seq: 6
+}
+
+post {
+  url: {{base_url}}/api/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}
+
+body:json {
+  {
+      empty 
+    
+  }
+}
+
+assert {
+  res.status: eq 400
+  res.body.error: eq Invalid JSON
+  res.body.message: contains invalid JSON data
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

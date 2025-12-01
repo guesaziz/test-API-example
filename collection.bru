@@ -1,0 +1,27 @@
+headers {
+  x-api-key: reqres_75aa3b2c4e1b461ab9e3cdb8e3b56eab
+}
+
+vars:pre-request {
+  nb_page: 2
+  nb_usr_per_page: 3
+  first_name: abdelaziz
+  last_name: GUESBAYA
+  email: gues_aziz@gmail.yah
+}
+
+script:pre-request {
+  const { getTodayDate } = require('./99-util/util.js');
+  
+  const today = getTodayDate(new Date());
+  
+  bru.setEnvVar('current_date', today);
+}
+
+tests {
+  test('response time should be under 5 seconds', function () {
+    const responseTime = res.getResponseTime(); // en millisecondes
+  
+    expect(responseTime, 'response time should be < 5000ms').to.be.lessThan(5000);
+  });
+}

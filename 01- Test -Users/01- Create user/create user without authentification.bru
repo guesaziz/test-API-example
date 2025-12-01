@@ -1,0 +1,38 @@
+meta {
+  name: create user without authentification
+  type: http
+  seq: 3
+}
+
+post {
+  url: {{base_url}}/api/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}
+
+headers {
+  x-api-key: 123456
+}
+
+body:json {
+  {
+          "first_name": "aziz",
+        "last_name": "test prenom aziz"
+    
+  }
+}
+
+assert {
+  res.status: eq 403
+  res.body.error: eq "invalid_api_key"
+  res.body.message: contains "This API key is not recognized"
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

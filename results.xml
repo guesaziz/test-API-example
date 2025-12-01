@@ -1,0 +1,88 @@
+<?xml version="1.0"?>
+<testsuites>
+  <testsuite name="create user valide" errors="0" failures="0" skipped="0" tests="5" timestamp="2025-12-01T22:20:57.028" hostname="DESKTOP-FHVNOM1" time="0.721">
+    <testcase name="res.status eq 201" status="pass" classname="https://reqres.in/api/users" time="0.144"/>
+    <testcase name="res.body.first_name eq {{first_name}}" status="pass" classname="https://reqres.in/api/users" time="0.144"/>
+    <testcase name="res.body.id isDefined" status="pass" classname="https://reqres.in/api/users" time="0.144"/>
+    <testcase name="res.body.createdAt contains {{current_date}}" status="pass" classname="https://reqres.in/api/users" time="0.144"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.144"/>
+  </testsuite>
+  <testsuite name="re-create user exist possible - KO" errors="0" failures="0" skipped="0" tests="1" timestamp="2025-12-01T22:20:57.030" hostname="DESKTOP-FHVNOM1" time="0.412">
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.412"/>
+  </testsuite>
+  <testsuite name="create user without authentification" errors="0" failures="0" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.032" hostname="DESKTOP-FHVNOM1" time="0.532">
+    <testcase name="res.status eq 403" status="pass" classname="https://reqres.in/api/users" time="0.133"/>
+    <testcase name="res.body.error eq &quot;invalid_api_key&quot;" status="pass" classname="https://reqres.in/api/users" time="0.133"/>
+    <testcase name="res.body.message contains &quot;This API key is not recognized&quot;" status="pass" classname="https://reqres.in/api/users" time="0.133"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.133"/>
+  </testsuite>
+  <testsuite name="create user first_name is number - KO" errors="0" failures="0" skipped="0" tests="1" timestamp="2025-12-01T22:20:57.034" hostname="DESKTOP-FHVNOM1" time="0.437">
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.437"/>
+  </testsuite>
+  <testsuite name="create user empty user possible - KO-noKO" errors="0" failures="0" skipped="0" tests="1" timestamp="2025-12-01T22:20:57.035" hostname="DESKTOP-FHVNOM1" time="0.409">
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.409"/>
+  </testsuite>
+  <testsuite name="create user bad json request" errors="0" failures="2" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.037" hostname="DESKTOP-FHVNOM1" time="0.436">
+    <testcase name="res.status eq 400" status="pass" classname="https://reqres.in/api/users" time="0.109"/>
+    <testcase name="res.body.error eq Invalid JSON" status="fail" classname="https://reqres.in/api/users" time="0.109">
+      <failure type="failure" message="expected 'Invalid request body' to equal 'Invalid JSON'"/>
+    </testcase>
+    <testcase name="res.body.message contains invalid JSON data" status="fail" classname="https://reqres.in/api/users" time="0.109">
+      <failure type="failure" message="expected 'Request body must be valid JSON' to include 'invalid JSON data'"/>
+    </testcase>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.109"/>
+  </testsuite>
+  <testsuite name="get all users" errors="0" failures="0" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.038" hostname="DESKTOP-FHVNOM1" time="0.375">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users" time="0.094"/>
+    <testcase name="res.body.data.every( usr => usr[&quot;id&quot;] != null) isTruthy" status="pass" classname="https://reqres.in/api/users" time="0.094"/>
+    <testcase name="have the default value for per_page" status="pass" classname="https://reqres.in/api/users" time="0.094"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users" time="0.094"/>
+  </testsuite>
+  <testsuite name="Get users by page" errors="0" failures="0" skipped="0" tests="2" timestamp="2025-12-01T22:20:57.039" hostname="DESKTOP-FHVNOM1" time="0.390">
+    <testcase name="response should use the same page and per_page values as the request" status="pass" classname="https://reqres.in/api/users?page=2&amp;per_page=3" time="0.195"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users?page=2&amp;per_page=3" time="0.195"/>
+  </testsuite>
+  <testsuite name="Get users by hug nb page" errors="0" failures="0" skipped="0" tests="2" timestamp="2025-12-01T22:20:57.040" hostname="DESKTOP-FHVNOM1" time="0.364">
+    <testcase name="response should use the same page and per_page values as the request" status="pass" classname="https://reqres.in/api/users?page=21254&amp;per_page=3" time="0.182"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users?page=21254&amp;per_page=3" time="0.182"/>
+  </testsuite>
+  <testsuite name="Get users by invalide param page value" errors="0" failures="0" skipped="0" tests="1" timestamp="2025-12-01T22:20:57.042" hostname="DESKTOP-FHVNOM1" time="0.437">
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users?page=0r&amp;per_page=3" time="0.437"/>
+  </testsuite>
+  <testsuite name="get user by bad id" errors="0" failures="0" skipped="0" tests="2" timestamp="2025-12-01T22:20:57.043" hostname="DESKTOP-FHVNOM1" time="0.440">
+    <testcase name="res.status eq 404" status="pass" classname="https://reqres.in/api/users/312345798456" time="0.220"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/312345798456" time="0.220"/>
+  </testsuite>
+  <testsuite name="get user by id" errors="0" failures="0" skipped="0" tests="3" timestamp="2025-12-01T22:20:57.044" hostname="DESKTOP-FHVNOM1" time="0.392">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/3" time="0.131"/>
+    <testcase name="res.body.data.id eq {{user-id}}" status="pass" classname="https://reqres.in/api/users/3" time="0.131"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/3" time="0.131"/>
+  </testsuite>
+  <testsuite name="get user by wrong id" errors="0" failures="0" skipped="0" tests="2" timestamp="2025-12-01T22:20:57.046" hostname="DESKTOP-FHVNOM1" time="0.427">
+    <testcase name="res.status eq 404" status="pass" classname="https://reqres.in/api/users/er312345798456ou" time="0.213"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/er312345798456ou" time="0.213"/>
+  </testsuite>
+  <testsuite name="update user email" errors="0" failures="0" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.047" hostname="DESKTOP-FHVNOM1" time="1.098">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/3" time="0.274"/>
+    <testcase name="res.body.email eq &quot;{{email}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.274"/>
+    <testcase name="res.body.updatedAt contains &quot;{{current_date}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.274"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/3" time="0.274"/>
+  </testsuite>
+  <testsuite name="update user last_name" errors="0" failures="0" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.048" hostname="DESKTOP-FHVNOM1" time="0.543">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/3" time="0.136"/>
+    <testcase name="res.body.last_name eq &quot;Funked name&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.136"/>
+    <testcase name="res.body.updatedAt contains &quot;{{current_date}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.136"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/3" time="0.136"/>
+  </testsuite>
+  <testsuite name="update user meta information is possible - KO" errors="0" failures="0" skipped="0" tests="4" timestamp="2025-12-01T22:20:57.049" hostname="DESKTOP-FHVNOM1" time="0.441">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/3" time="0.110"/>
+    <testcase name="res.body._meta.upgrade_cta eq &quot;{{email}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.110"/>
+    <testcase name="res.body.updatedAt contains &quot;{{current_date}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.110"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/3" time="0.110"/>
+  </testsuite>
+  <testsuite name="update user empty" errors="0" failures="0" skipped="0" tests="3" timestamp="2025-12-01T22:20:57.050" hostname="DESKTOP-FHVNOM1" time="0.200">
+    <testcase name="res.status eq 200" status="pass" classname="https://reqres.in/api/users/3" time="0.067"/>
+    <testcase name="res.body.updatedAt contains &quot;{{current_date}}&quot;" status="pass" classname="https://reqres.in/api/users/3" time="0.067"/>
+    <testcase name="response time should be under 5 seconds" status="pass" classname="https://reqres.in/api/users/3" time="0.067"/>
+  </testsuite>
+</testsuites>

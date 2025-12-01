@@ -1,0 +1,32 @@
+meta {
+  name: re-create user exist possible - KO
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base_url}}/api/users
+  body: json
+  auth: none
+}
+
+params:query {
+  ~page: 1
+}
+
+body:json {
+  {
+          "first_name": "aziz",
+        "last_name": "test prenom aziz"
+    
+  }
+}
+
+assert {
+  ~res.sataus: eq 301
+}
+
+settings {
+  encodeUrl: true
+  timeout: 0
+}

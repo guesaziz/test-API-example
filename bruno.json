@@ -1,0 +1,16 @@
+{
+  "version": "1",
+  "name": "ReqResAPI",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ],
+  "scripts": {
+  "moduleWhitelist": ["crypto", "buffer", "form-data"],
+  "filesystemAccess": {
+    "allow": true
+    },
+  "additionalContextRoots": ["./99-util/util.js"]
+  }
+}

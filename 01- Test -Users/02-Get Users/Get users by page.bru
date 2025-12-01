@@ -1,0 +1,43 @@
+meta {
+  name: Get users by page
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base_url}}/api/users?page={{nb_page}}&per_page={{nb_usr_per_page}}
+  body: none
+  auth: none
+}
+
+params:query {
+  page: {{nb_page}}
+  per_page: {{nb_usr_per_page}}
+}
+
+headers {
+  accept: application/json
+}
+
+tests {
+  test('response should use the same page and per_page values as the request', function () {
+    // Convert variables from collection to numbers
+    const expectedPerPage = Number(bru.getCollectionVar('nb_usr_per_page'));
+    const expectedPage = Number(bru.getCollectionVar('nb_page'));
+  
+    const body = res.getBody();
+  
+    // Basic response validation
+    expect(res.getStatus()).to.equal(200);
+  
+    // Validate pagination consistency
+    expect(body.per_page, 'per_page should match request value').to.equal(expectedPerPage);
+    expect(body.page, 'page should match request value').to.equal(expectedPage);
+      expect(body.data, 'data array should match request length value').length.to.be.at.most(expectedPerPage);
+  });
+}
+
+settings {
+  encodeUrl: false
+  timeout: 0
+}
