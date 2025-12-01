@@ -26,7 +26,7 @@ jobs:
       run: npm install -g @usebruno/cli@2.15.0
     
     - name: Run API Tests
-      run: bru run --env "test-env" --env-var base_url="https://reqres.in" -r --delay 200 --reporter-junit results.xml  --reporter-html report-test-api.html --reporter-skip-all-headers | true
+      run: bru run --env "test-env" --env-var base_url="https://reqres.in" -r --delay 200 --reporter-junit results.xml  --reporter-html report-test-api.html --reporter-skip-all-headers
     
     - name: Upload Test Results
       if: always()
