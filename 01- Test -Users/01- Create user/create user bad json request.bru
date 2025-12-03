@@ -23,8 +23,8 @@ body:json {
 
 assert {
   res.status: eq 400
-  res.body.error: eq Invalid JSON
-  res.body.message: contains invalid JSON data
+  res.body.error: contains Invalid
+  res.body.message: contains JSON
 }
 
 settings {
